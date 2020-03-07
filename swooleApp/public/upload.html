@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>使用Websocket上传文件</title>
+</head>
+
+<body>
+
+<input type="file" id="myFile">
+<div id="log"></div>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
+$('#myFile').on('change', function(event) {
+    var ws = new WebSocket("ws://192.168.3.104:9505");
+
+    ws.onopen = function() {
+        log('已连接上！');
+    }
+    ws.onmessage = function(e) {
+        log("收到服务器消息:" + e.data + "'\n");
+        if (e.data == 'connect ok') {
+            log('开始上传文件');
+        } 
+        if (e.data == 'upload success') {
+            log('上传完成');
+            ws.close();
+        } else {
+            var file = document.getElementById("myFile").files[0];
+
+            var reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+
+            reader.onload = function(e) {
+                ws.send(e.target.result);
+                log('正在上传数据...');
+            }
+        }
+    }
+    ws.onclose = function() {
+        console.log('连接已关闭！');
+        log('连接已关闭！');
+    }
+});
+//在消息框中打印内容
+function log(text) {
+    $("#log").append(text+"<br/>");
+}
+</script>
+</body>
+</html>
