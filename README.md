@@ -1,7 +1,9 @@
 # Swoole简单入门示例
 Swoole可以让PHP 开发人员可以编写高性能的异步并发 TCP、UDP、Unix Socket、HTTP，WebSocket 服务。Swoole 可以广泛应用于互联网、移动通信、企业软件、云计算、网络游戏、物联网（IOT）、车联网、智能家居等领域。
 # 前提
-使用Composer构建项目，构建好项目。参考:http://www.shanhubei.com/composer-swoole.html或者利用搜索引擎。
+使用Composer构建项目，构建好项目。
+参考:http://www.shanhubei.com/composer-swoole.html
+或者利用搜索引擎。
 # 一、使用Swoole发送邮件
 使用composer安装邮件发送组件：phpmailer。
 ```
