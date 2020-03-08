@@ -4,7 +4,19 @@ Swoole可以让PHP 开发人员可以编写高性能的异步并发 TCP、UDP、
 使用Composer构建项目，构建好项目。
 参考:http://www.shanhubei.com/composer-swoole.html
 或者利用搜索引擎。
-# 一、使用Swoole发送邮件
+本篇介绍以下几个示例：
+一、<a href="#demo1">使用Swoole发送邮件</a>
+二、<a href="#demo2">使用Swoole实现在线聊天</a>
+三、<a href="#demo3">使用Systemctl管理Swoole服务</a>
+四、<a href="#demo4">使用Swoole实现毫秒级定时任务</a>
+五、<a href="#demo5">使用Websocket上传文件</a>
+
+# 部分预览
+![image](swooleApp/public/images/uploadpre.png)
+![image](swooleApp/public/images/chatpre.png)
+
+
+# <a id="demo1"> 一、使用Swoole发送邮件 </a>
 使用composer安装邮件发送组件：phpmailer。
 ```
 composer require phpmailer/phpmailer
@@ -367,7 +379,7 @@ Get Message From Server:{"result":"success"}
 然后你可以去查看对方邮箱是否收到相关邮件。
 本文中使用了redis作为简单队列，你也可以使用复杂点的队列rabbitmq。你也可以使用Crontab来做定时任务，不过它最小粒度是分钟级别的。当然对于批量发送邮件，如果你不用php的话，可以用Python或者Java，它们都有相当成熟的解决方案。
 
-# 二、使用Swoole实现在线聊天
+# <a id="demo2">二、使用Swoole实现在线聊天</a>
 ### 建立服务端主程序
 准备工作就绪后，我们开始来撸代码。
 
@@ -638,7 +650,7 @@ if ("WebSocket" in window) {
 ```
 
 然后用浏览器打开wsClient.html，你可以看到一个聊天窗口，一开始会提示连接成功，然后你可以在输入框中输入你想说的话，如“美女”等等。
-# 三、使用Systemctl管理Swoole服务
+# <a id="demo3">三、使用Systemctl管理Swoole服务</a>
 ### 配置Swoole服务
 有了Systemctl，我们可以轻松配置我们的Swoole服务，下面以Swoole聊天服务为例：
 
@@ -672,7 +684,7 @@ systemctl start swoolechat.service
 systemctl status swoolechat.service
 ```
 
-# 四、使用Swoole实现毫秒级定时任务
+# <a id="demo4">四、使用Swoole实现毫秒级定时任务</a>
 
 接着服务端代码 `public\taskServer.php` ：
 ```
@@ -727,7 +739,7 @@ php taskServer.php
 Get Message From Server:{"result":"success"}
 ```
 
-# 五、使用Websocket上传文件
+# <a id="demo5">五、使用Websocket上传文件</a>
 ### 服务端
 我们继续使用Swoole实验室：1-使用Composer构建项目构建好的项目，新建文件\src\app\Uploader.php：
 ```
